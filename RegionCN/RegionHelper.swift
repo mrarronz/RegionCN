@@ -11,18 +11,34 @@ import MJExtension
 class District: NSObject {
     var districtId: String?
     var districtName: String?
+    
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["districtId" : "_id", "districtName" : "_name"]
+    }
 }
 
 class City: NSObject {
     var cityId: String?
     var cityName: String?
     var district: Any?
+    
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["cityId" : "_id", "cityName" : "_name"]
+    }
 }
 
 class Province: NSObject {
     var provinceId: String?
     var provinceName: String?
     var city: NSArray?
+    
+    override static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
+        return ["provinceId" : "_id", "provinceName" : "_name"]
+    }
+    
+    override static func mj_objectClassInArray() -> [AnyHashable : Any]! {
+        return ["city" : "City"]
+    }
 }
 
 class RegionHelper: NSObject {
@@ -30,7 +46,8 @@ class RegionHelper: NSObject {
     static let shared = RegionHelper()
     
     var provincesXMLArray: NSMutableArray {
-        let path = Bundle.main.path(forResource: "regions", ofType: "xml")
+        let bundle = Bundle.init(for: self.classForCoder)
+        let path = bundle.path(forResource: "regions", ofType: "xml")
         let xmlData = NSData.init(contentsOfFile: path!)
         let xmlDict = NSDictionary.init(xmlData: xmlData! as Data)
         let provinceData = xmlDict?.object(forKey: "province")
@@ -39,8 +56,9 @@ class RegionHelper: NSObject {
     }
     
     var regionTXTData: Array<String> {
-        let filePath = Bundle.main.path(forResource: "region", ofType: "txt")
-        let regionString = try! String.init(contentsOf: URL.init(string: filePath!)!, encoding: .utf8)
+        let bundle = Bundle.init(for: self.classForCoder)
+        let filePath = bundle.path(forResource: "region", ofType: "txt")
+        let regionString = try! NSString.init(contentsOfFile: filePath!, encoding: String.Encoding.utf8.rawValue)
         let array: Array<String> = regionString.components(separatedBy: "\n")
         return array
     }

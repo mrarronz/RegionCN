@@ -6,3 +6,9 @@ target 'RegionCN' do
 pod 'MJExtension'
 
 end
+
+target 'RegionCNTests' do
+    
+pod 'MJExtension'
+    
+end

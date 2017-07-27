@@ -32,4 +32,45 @@ class RegionCNTests: XCTestCase {
         }
     }
     
+    func testRegionByCode() {
+        let region = RegionHelper.shared.findRegionByCode(regionCode: "110000")
+        let regionName = region["regionName"]
+        XCTAssert(regionName == "北京市")
+    }
+    
+    func testRegionByName() {
+        let region = RegionHelper.shared.findRegionByName(regionName: "中国")
+        let regionCode = region["regionCode"]
+        XCTAssert(regionCode == "100000")
+    }
+    
+    func testAllProvince() {
+        let allProvince = RegionHelper.shared.allProvinces()
+        print("all province: \(allProvince)")
+        XCTAssert(allProvince.count != 0)
+    }
+    
+    func testRegionsInProvince() {
+        let regions = RegionHelper.shared.regionsInProvince(provinceCode: "130000")
+        XCTAssert(regions.count != 0)
+    }
+    
+    func testAllCitiesInProvince() {
+        let cities = RegionHelper.shared.allCitiesInProvince(provinceCode: "130000")
+        XCTAssert(cities.count == 11)
+    }
+    
+    func testAllAreasInCity() {
+        
+        self.measure {
+            let areas = RegionHelper.shared.allAreasInCity(cityCode: "130185")
+            XCTAssert(areas.count != 0)
+        }
+    }
+    
+    func testProvincesXMLArray() {
+        let provinces = RegionHelper.shared.provincesXMLArray
+        XCTAssert(provinces.count != 0)
+    }
+    
 }
