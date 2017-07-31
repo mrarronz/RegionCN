@@ -75,10 +75,10 @@ class RegionCNTests: XCTestCase {
     
     func testCityClassInXMLProvince() {
         let provinces = RegionHelper.shared.provincesXMLArray
-        let province = provinces.firstObject as! Province
-        let cityList = province.city
+        let province = provinces.firstObject as! NSDictionary
+        let cityList = province.object(forKey: "city") as? NSArray
         let firstCity = cityList?.firstObject as AnyObject
-        XCTAssert(firstCity.isKind(of: City.classForCoder()))
+        XCTAssert(firstCity.isKind(of: NSDictionary.classForCoder()))
     }
     
 }

@@ -6,53 +6,18 @@
 //
 
 import UIKit
-import MJExtension
-
-public class District: NSObject {
-    public var districtId: String?
-    public var districtName: String?
-    
-    override public static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
-        return ["districtId" : "_id", "districtName" : "_name"]
-    }
-}
-
-public class City: NSObject {
-    public var cityId: String?
-    public var cityName: String?
-    public var district: Any?
-    
-    override public static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
-        return ["cityId" : "_id", "cityName" : "_name"]
-    }
-}
-
-public class Province: NSObject {
-    public var provinceId: String?
-    public var provinceName: String?
-    public var city: NSArray?
-    
-    override public static func mj_replacedKeyFromPropertyName() -> [AnyHashable : Any]! {
-        return ["provinceId" : "_id", "provinceName" : "_name"]
-    }
-    
-    override public static func mj_objectClassInArray() -> [AnyHashable : Any]! {
-        return ["city" : "City"]
-    }
-}
 
 public class RegionHelper: NSObject {
 
     public static let shared = RegionHelper()
     
-    public var provincesXMLArray: NSMutableArray {
+    public var provincesXMLArray: NSArray {
         let bundle = Bundle.init(for: self.classForCoder)
         let path = bundle.path(forResource: "regions", ofType: "xml")
         let xmlData = NSData.init(contentsOfFile: path!)
         let xmlDict = NSDictionary.init(xmlData: xmlData! as Data)
-        let provinceData = xmlDict?.object(forKey: "province")
-        let provinces = Province.mj_objectArray(withKeyValuesArray: provinceData)
-        return provinces!
+        let provinces = xmlDict?.object(forKey: "province")
+        return provinces as! NSArray
     }
     
     private var regionTXTData: Array<String> {
