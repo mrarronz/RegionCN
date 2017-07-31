@@ -56,7 +56,7 @@ public class RegionHelper: NSObject {
         if district.isKind(of: NSArray.classForCoder()) {
             return district as? NSArray
         } else {
-            return NSArray.init(array: district as! NSArray)
+            return NSArray.init(object: district)
         }
     }
     
