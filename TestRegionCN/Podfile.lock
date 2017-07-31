@@ -1,7 +1,5 @@
 PODS:
-  - MJExtension (3.0.13)
-  - RegionCN (0.0.1):
-    - MJExtension
+  - RegionCN (0.0.1)
 
 DEPENDENCIES:
   - RegionCN (from `https://github.com/mrarronz/RegionCN.git`)
@@ -12,12 +10,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   RegionCN:
-    :commit: a3f0f25a3b62653af2d754b37d389d2beda580a9
+    :commit: 594ba97f4669379b1709b4791921b066eecc60ca
     :git: https://github.com/mrarronz/RegionCN.git
 
 SPEC CHECKSUMS:
-  MJExtension: 5932755f451458eefa24239358817f8d291240c7
-  RegionCN: c4a513c0c54efde08a44f2eb8faf6c0d38093486
+  RegionCN: b2cfef3bdda4213acbf4079e58fea9093077496b
 
 PODFILE CHECKSUM: f2b0e8925abf49a2f8ad593914f3b97577de5368
 

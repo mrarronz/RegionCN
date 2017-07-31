@@ -31,14 +31,8 @@ class ViewController: UIViewController, RegionPickerDelegate {
         pickerView.show()
     }
     
-    func picker(picker: RegionPickerView, didSelectProvince province: Province?, city: City?, district: NSDictionary?) {
-        let provinceName: String = (province?.provinceName)!
-        var cityName: String = (city?.cityName == nil) ? "" : (city?.cityName)!
-        if cityName == "市辖区" || cityName == "县" {
-            cityName = ""
-        }
-        let districtName: String = (district?.object(forKey: "_name") == nil) ? "" : (district?.object(forKey: "_name") as! String)
-        regionLabel.text = String.init(format: "%@%@%@", provinceName, cityName, districtName)
+    func picker(picker: RegionPickerView, didSelectRegion region: String?) {
+        regionLabel.text = region
     }
 }
 
