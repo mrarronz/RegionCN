@@ -112,7 +112,7 @@ open class RegionPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegat
         initData()
     }
     
-    init(style:PickerViewStyle, delegate: RegionPickerDelegate) {
+    public init(style:PickerViewStyle, delegate: RegionPickerDelegate) {
         super.init(frame: UIScreen.main.bounds)
         self.style = style
         self.delegate = delegate
@@ -275,7 +275,7 @@ open class RegionPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegat
     
     // MARK: - Show & Dismiss
     
-    func show() {
+    public func show() {
         let keyWindow = UIApplication.shared.keyWindow
         keyWindow?.addSubview(self)
         
@@ -288,7 +288,7 @@ open class RegionPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegat
         }
     }
     
-    func dismiss() {
+    public func dismiss() {
         UIView.animate(withDuration: 0.25, animations: { 
             self.backgroundColor = UIColor.init(white: 0, alpha: 0)
             self.contentView.frame = CGRect.init(x: 0,
