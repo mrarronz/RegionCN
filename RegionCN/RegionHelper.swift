@@ -44,6 +44,22 @@ public class RegionHelper: NSObject {
         return array
     }
     
+    /// 根据XML文件中的一个省份查找这个省份下面所有的城市
+    public func cityList(inProvince: NSDictionary) -> NSArray? {
+        return inProvince.object(forKey: "city") as? NSArray
+    }
+    
+    /// 根据XML城市列表查询某个城市下面所有的区县
+    public func districtList(inCityList: NSArray?, atIndex: Int) -> NSArray? {
+        let city: NSDictionary? = inCityList?.object(at: atIndex) as? NSDictionary
+        let district = city?.object(forKey: "district") as AnyObject
+        if district.isKind(of: NSArray.classForCoder()) {
+            return district as? NSArray
+        } else {
+            return NSArray.init(array: district as! NSArray)
+        }
+    }
+    
     /// 根据地区名字查找地区对应的数据字典
     public func findRegionByName(regionName: String) -> Dictionary<String, String> {
         var dict = Dictionary<String, String>()

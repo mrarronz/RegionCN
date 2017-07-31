@@ -221,7 +221,7 @@ open class RegionPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegat
                 if district.isKind(of: NSArray.classForCoder()) {
                     self.districtList = district as? NSArray
                 } else {
-                    self.districtList = NSArray.init(object: district as! NSArray)
+                    self.districtList = NSArray.init(array: district as! NSArray)
                 }
                 pickerView.reloadComponent(2)
                 selectFirstRowInComponent(component: 2, forItems: self.districtList)
@@ -244,7 +244,7 @@ open class RegionPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegat
                 if district.isKind(of: NSArray.classForCoder()) {
                     self.districtList = district as? NSArray
                 } else {
-                    self.districtList = NSArray.init(object: district as! NSArray)
+                    self.districtList = NSArray.init(array: district as! NSArray)
                 }
                 pickerView.reloadComponent(2)
                 selectFirstRowInComponent(component: 2, forItems: self.districtList)

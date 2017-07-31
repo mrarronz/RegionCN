@@ -81,4 +81,19 @@ class RegionCNTests: XCTestCase {
         XCTAssert(firstCity.isKind(of: NSDictionary.classForCoder()))
     }
     
+    func testCityList() {
+        let provinces = RegionHelper.shared.provincesXMLArray
+        let province = provinces.firstObject as! NSDictionary
+        let cityList = RegionHelper.shared.cityList(inProvince: province)
+        XCTAssertTrue(cityList != nil)
+    }
+    
+    func testDistrictList() {
+        let provinces = RegionHelper.shared.provincesXMLArray
+        let province = provinces.firstObject as! NSDictionary
+        let cityList = RegionHelper.shared.cityList(inProvince: province)
+        let districtList = RegionHelper.shared.districtList(inCityList: cityList, atIndex: 0)
+        XCTAssertTrue(districtList != nil)
+    }
+    
 }
