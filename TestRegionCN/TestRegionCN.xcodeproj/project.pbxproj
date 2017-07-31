@@ -15,7 +15,6 @@
 		E23F16451F29E27100B5A4E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23F16431F29E27100B5A4E4 /* LaunchScreen.storyboard */; };
 		E23F16501F29E27100B5A4E4 /* TestRegionCNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23F164F1F29E27100B5A4E4 /* TestRegionCNTests.swift */; };
 		E23F165B1F29E27100B5A4E4 /* TestRegionCNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23F165A1F29E27100B5A4E4 /* TestRegionCNUITests.swift */; };
-		E23F16691F29EB0000B5A4E4 /* RegionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23F16681F29EB0000B5A4E4 /* RegionPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +51,6 @@
 		E23F16561F29E27100B5A4E4 /* TestRegionCNUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestRegionCNUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E23F165A1F29E27100B5A4E4 /* TestRegionCNUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRegionCNUITests.swift; sourceTree = "<group>"; };
 		E23F165C1F29E27100B5A4E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E23F16681F29EB0000B5A4E4 /* RegionPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				E23F163A1F29E27100B5A4E4 /* AppDelegate.swift */,
-				E23F16681F29EB0000B5A4E4 /* RegionPickerView.swift */,
 				E23F163C1F29E27100B5A4E4 /* ViewController.swift */,
 				E23F163E1F29E27100B5A4E4 /* Main.storyboard */,
 				E23F16411F29E27100B5A4E4 /* Assets.xcassets */,
@@ -341,7 +338,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E23F163D1F29E27100B5A4E4 /* ViewController.swift in Sources */,
-				E23F16691F29EB0000B5A4E4 /* RegionPickerView.swift in Sources */,
 				E23F163B1F29E27100B5A4E4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   RegionCN:
-    :commit: 7a4bd59c464128ddb2b3625d761d3f7a55294bee
+    :commit: 9e304ac8abf049477384434bc9be6dd42daccb0f
     :git: https://github.com/mrarronz/RegionCN.git
 
 SPEC CHECKSUMS:
