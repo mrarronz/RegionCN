@@ -14,7 +14,8 @@ public class PickerViewStyle: NSObject {
     public var pickerHeight: CGFloat?
     public var buttonWidth: CGFloat?
     public var pickerTextColor: UIColor?
-    public var itemTitleColor: UIColor?
+    public var doneTitleColor: UIColor?
+    public var cancelTitleColor: UIColor?
 }
 
 @objc public protocol RegionPickerDelegate : class {
@@ -73,16 +74,18 @@ open class RegionPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegat
         
         let cancelBtn = UIButton.init(type: .system)
         cancelBtn.setTitle("取消", for: .normal)
-        cancelBtn.setTitleColor(style?.itemTitleColor, for: .normal)
+        cancelBtn.setTitleColor(style?.cancelTitleColor, for: .normal)
         cancelBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         cancelBtn.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)
+        cancelBtn.isExclusiveTouch = true
         toolBar.addSubview(cancelBtn)
         
         let doneBtn = UIButton.init(type: .system)
         doneBtn.setTitle("完成", for: .normal)
-        doneBtn.setTitleColor(style?.itemTitleColor, for: .normal)
+        doneBtn.setTitleColor(style?.doneTitleColor, for: .normal)
         doneBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         doneBtn.addTarget(self, action: #selector(doneButtonClicked), for: .touchUpInside)
+        doneBtn.isExclusiveTouch = true
         toolBar.addSubview(doneBtn)
         
         cancelBtn.frame = CGRect.init(x: 0, y: 0, width: (style?.buttonWidth)!, height: (style?.toolBarHeight)!)
@@ -103,7 +106,8 @@ open class RegionPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegat
             style?.pickerHeight = 220
             style?.buttonWidth = 70
             style?.pickerTextColor = UIColor.blue
-            style?.itemTitleColor = UIColor.orange
+            style?.cancelTitleColor = UIColor.red
+            style?.doneTitleColor = UIColor.orange
         }
         self.delegate = delegate
         initData()
@@ -128,13 +132,8 @@ open class RegionPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegat
         let province = provinceList.firstObject as! NSDictionary
         self.cityList = province.object(forKey: "city") as? NSArray
         let city = self.cityList?.firstObject as? NSDictionary
-        let district = city?.object(forKey: "district") as AnyObject
         
-        if district.isKind(of: NSArray.classForCoder()) {
-            self.districtList = district as? NSArray
-        } else {
-            self.districtList = NSArray.init(array: district as! NSArray)
-        }
+        self.districtList = RegionHelper.shared.districtList(inCityList: self.cityList, atIndex: 0)
         self.selectedProvince = province
         self.selectedCity = city
         self.selectedDistrict = self.districtList?.firstObject as? NSDictionary
@@ -216,13 +215,7 @@ open class RegionPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegat
             
             if self.cityList != nil && (self.cityList?.count)! > 0 {
                 let city = self.cityList?.firstObject as? NSDictionary
-                let district = city?.object(forKey: "district") as AnyObject
-                
-                if district.isKind(of: NSArray.classForCoder()) {
-                    self.districtList = district as? NSArray
-                } else {
-                    self.districtList = NSArray.init(array: district as! NSArray)
-                }
+                self.districtList = RegionHelper.shared.districtList(inCityList: self.cityList, atIndex: 0)
                 pickerView.reloadComponent(2)
                 selectFirstRowInComponent(component: 2, forItems: self.districtList)
                 
@@ -239,13 +232,7 @@ open class RegionPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegat
         case 1:
             if self.cityList != nil && (self.cityList?.count)! > 0 {
                 let city = self.cityList?.object(at: row) as! NSDictionary
-                let district = city.object(forKey: "district") as AnyObject
-                
-                if district.isKind(of: NSArray.classForCoder()) {
-                    self.districtList = district as? NSArray
-                } else {
-                    self.districtList = NSArray.init(array: district as! NSArray)
-                }
+                self.districtList = RegionHelper.shared.districtList(inCityList: self.cityList, atIndex: row)
                 pickerView.reloadComponent(2)
                 selectFirstRowInComponent(component: 2, forItems: self.districtList)
                 
